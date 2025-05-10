@@ -118,7 +118,7 @@ function GameScreen({ players }) {
 
       {showWinnerPopup && (
         <div className="winner-popup">
-          <h3>Congrats! You won, {players.find((_, idx) => !isPlayerEliminated(idx))}!</h3>
+          <h3>Congratulstions! You won, {players.find((_, idx) => !isPlayerEliminated(idx))}!</h3>
           <button onClick={() => setShowWinnerPopup(false)}>Close</button>
         </div>
       )}
