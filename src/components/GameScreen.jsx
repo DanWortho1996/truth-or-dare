@@ -9,15 +9,26 @@ function GameScreen({ players }) {
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [eliminatedPlayers, setEliminatedPlayers] = useState([]);
   const [showWinnerPopup, setShowWinnerPopup] = useState(false);
+  const [braveryCount, setBraveryCount] = useState({});
+  const [chickenCount, setChickenCount] = useState({});
 
   useEffect(() => {
     setShuffledTruths(shuffle([...truthQuestions]));
     setShuffledDares(shuffle([...dareQuestions]));
   }, []);
 
+  const handleChoice = (playerName, choice) => {
+    if (choice === 'truth') {
+      setBraveryCount(prev => ({ ...prev, [playerName]: (prev[playerName] || 0) + 1 }));
+    } else if (choice === 'dare') {
+      setChickenCount(prev => ({ ...prev, [playerName]: (prev[playerName] || 0) + 1 }));
+    }
+  };
+
   const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
   const handleTruth = () => {
+    handleChoice(players[currentPlayerIndex], 'truth');
     if (shuffledTruths.length === 0) {
       setShuffledTruths(shuffle([...truthQuestions]));
     }
@@ -26,6 +37,7 @@ function GameScreen({ players }) {
   };
 
   const handleDare = () => {
+    handleChoice(players[currentPlayerIndex], 'dare');
     if (shuffledDares.length === 0) {
       setShuffledDares(shuffle([...dareQuestions]));
     }
@@ -69,6 +81,14 @@ function GameScreen({ players }) {
         setShowWinnerPopup(true);
       }, 2000);
     }
+  };
+
+  const getBravest = () => {
+    return Object.entries(braveryCount).sort((a, b) => b[1] - a[1])[0]?.[0] || 'N/A';
+  };
+
+  const getChickened = () => {
+    return Object.entries(chickenCount).sort((a, b) => b[1] - a[1])[0]?.[0] || 'N/A';
   };
 
   return (
@@ -119,6 +139,8 @@ function GameScreen({ players }) {
       {showWinnerPopup && (
         <div className="winner-popup">
           <h3>Congratulations! You won, {players.find((_, idx) => !isPlayerEliminated(idx))}!</h3>
+          <h4>Bravest Player: {getBravest()}</h4>
+          <h4>Most Chickened Out: {getChickened()}</h4>
           <button onClick={() => setShowWinnerPopup(false)}>Close</button>
         </div>
       )}

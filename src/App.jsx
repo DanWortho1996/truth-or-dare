@@ -15,23 +15,30 @@ function App() {
     setIsGameStarted(true);
   };
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+  const changeTheme = (newTheme) => {
+    setTheme(newTheme);
   };
 
-  // Apply theme class to the <body> tag
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
 
+  const themes = ['light', 'dark', 'retro', 'party'];
+
   return (
     <div className="app-container">
-      <button onClick={toggleTheme}>Toggle Theme</button>
+      <div style={{ marginBottom: '10px' }}>
+        {themes.map((t) => (
+          <button key={t} onClick={() => changeTheme(t)}>{t.charAt(0).toUpperCase() + t.slice(1)}</button>
+        ))}
+      </div>
+
       <Instructions />
+
       {!isGameStarted ? (
         <SetupScreen onStartGame={handleStartGame} />
       ) : (
-        <GameScreen players={players} />
+        <GameScreen players={players} theme={theme} />
       )}
     </div>
   );

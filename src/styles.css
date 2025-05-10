@@ -192,3 +192,55 @@ body.light h2 {
 body.dark h2 {
   color: #ecf0f1; /* Light text for dark theme */
 }
+
+/* Light Theme (default) */
+body.light {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+/* Dark Theme */
+body.dark {
+  background-color: #121212;
+  color: white;
+}
+
+body.dark .player-box {
+  background-color: #1e1e1e;
+  border-color: #555;
+}
+
+/* Retro Theme */
+body.retro {
+  background-color: #faf0e6;
+  color: #222;
+  font-family: 'Courier New', monospace;
+}
+
+body.retro .player-box {
+  background-color: #fff8dc;
+  border: 2px dashed #000;
+}
+
+body.retro button {
+  background-color: #ffcc00;
+  color: black;
+}
+
+/* Party Theme */
+body.party {
+  background: linear-gradient(to right, #ff0080, #ff8c00, #40e0d0);
+  color: white;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+body.party .player-box {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid #fff;
+  backdrop-filter: blur(5px);
+}
+
+body.party button {
+  background-color: #fff;
+  color: #ff0080;
+}
