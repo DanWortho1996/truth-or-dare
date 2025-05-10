@@ -9,11 +9,6 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  background-color: #ecf0f1;
-}
-
-h2 {
-  color: #9ba1a7; /* Default color for light theme */
 }
 
 /* Player box styles */
@@ -34,10 +29,13 @@ h2 {
   box-shadow: 0 0 10px rgba(243, 156, 18, 0.6); /* Soft glow effect */
 }
 
+/* Eliminated player styles (added for all themes) */
 .player-box.eliminated {
-  border: 2px solid red; /* Border turns red for eliminated players */
+  border: 2px solid red; /* Default border for eliminated players */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); /* Red glow effect */
 }
 
+/* Life bars */
 .life-bars {
   display: flex;
   justify-content: space-between;
@@ -153,50 +151,20 @@ button:disabled {
   }
 }
 
-/* Dark theme styles */
-body.dark {
-  background-color: #121212;
-  color: white;
-}
-
-body.dark .player-box {
-  border-color: #555;
-  background-color: #1e1e1e;
-}
-
-body.dark .player-box.highlight {
-  border-color: #f39c12;
-  box-shadow: 0 0 10px rgba(243, 156, 18, 0.6);
-}
-
-body.dark .player-box.eliminated {
-  border-color: red;  /* Ensure red border for eliminated players in dark theme */
-  background-color: #333;  /* Optional: Darker background for eliminated players */
-}
-
-body.dark button {
-  background-color: #444;
-  color: white;
-}
-
-body.dark .winner-popup h3 {
-  background-color: #2c2c2c;
-  color: white;
-}
-
-/* Theme-specific color for <h2> */
-body.light h2 {
-  color: #2c3e50; /* Dark text for light theme */
-}
-
-body.dark h2 {
-  color: #ecf0f1; /* Light text for dark theme */
-}
-
 /* Light Theme (default) */
 body.light {
   background-color: #ecf0f1;
   color: #2c3e50;
+}
+
+body.light .player-box {
+  background-color: #ffffff;
+  border-color: #ccc;
+}
+
+body.light .player-box.eliminated {
+  border-color: red;  /* Ensure red border for eliminated players in light theme */
+  background-color: #f2f2f2; /* Light background for eliminated players */
 }
 
 /* Dark Theme */
@@ -210,6 +178,11 @@ body.dark .player-box {
   border-color: #555;
 }
 
+body.dark .player-box.eliminated {
+  border-color: red;  /* Ensure red border for eliminated players in dark theme */
+  background-color: #333;  /* Darker background for eliminated players */
+}
+
 /* Retro Theme */
 body.retro {
   background-color: #faf0e6;
@@ -220,6 +193,11 @@ body.retro {
 body.retro .player-box {
   background-color: #fff8dc;
   border: 2px dashed #000;
+}
+
+body.retro .player-box.eliminated {
+  border: 2px dashed #ff6347; /* Retro red border for eliminated players */
+  box-shadow: 0 0 10px rgba(255, 99, 71, 0.6); /* Retro glow effect */
 }
 
 body.retro button {
@@ -238,6 +216,11 @@ body.party .player-box {
   background-color: rgba(255, 255, 255, 0.2);
   border: 2px solid #fff;
   backdrop-filter: blur(5px);
+}
+
+body.party .player-box.eliminated {
+  border: 2px solid #ff00ff; /* Party pink border for eliminated players */
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.6); /* Party glow effect */
 }
 
 body.party button {
